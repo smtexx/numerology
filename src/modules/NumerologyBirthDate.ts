@@ -18,7 +18,7 @@ export default class NumerologyBirthDate extends BirthDate {
   }
 
   getBirthDayNumber(): string {
-    return calculateSum(this.day.toString());
+    return calculateSum(this.day);
   }
 
   getIndividualYearNumber(year: number): string {
@@ -26,12 +26,12 @@ export default class NumerologyBirthDate extends BirthDate {
     if (year < 1000) {
       throw new NumerologyError(`Wrong year argument value: ${year}`);
     }
-    if (year > this.year + 120) {
+    if (year > this.yearNumber + 120) {
       throw new NumerologyError(
         `Too big year argument value: ${year}`
       );
     }
-    if (year < this.year) {
+    if (year < this.yearNumber) {
       throw new NumerologyError(
         `Year argument value ${year} less than subject birth year`
       );
