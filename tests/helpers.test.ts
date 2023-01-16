@@ -3,6 +3,7 @@ import {
   calculateFlatSum,
   calculateSum,
   getTwoDigitsString,
+  calculateTopPeakValue,
 } from '../src/modules/helpers';
 
 describe('Function getTwoDigitsString', () => {
@@ -48,5 +49,14 @@ describe('Function calculateSum', () => {
     expect(calculateSum('03051940')).toBe('22/4');
     expect(calculateSum('09051949')).toBe('10');
     expect(calculateSum('01051949')).toBe('11');
+  });
+});
+
+describe('Function calculateTopPeakValue', () => {
+  test('Returns correct calculated value', () => {
+    expect(calculateTopPeakValue(2, 4)).toBe(6);
+    expect(calculateTopPeakValue(6, 4)).toBe(10);
+    expect(calculateTopPeakValue(6, 5)).toBe(11);
+    expect(calculateTopPeakValue(9, 8)).toBe(8);
   });
 });
