@@ -1,3 +1,6 @@
+import { Peak } from 'types';
+import NumerologyBirthDate from './NumerologyBirthDate';
+
 export function getTwoDigitsString(value: number): string {
   const stringValue = value.toString();
   return stringValue.length === 2 ? stringValue : `0${stringValue}`;
@@ -26,4 +29,25 @@ export function sumDigits(value: string): string {
     .map((valueString) => parseInt(valueString))
     .reduce((prev, curr) => prev + curr, 0)
     .toString();
+}
+
+export function calculateTopPeakValue(
+  baseLeft: number,
+  baseRight: number
+): number {
+  let value: number;
+
+  const firstSum = (baseLeft + baseRight).toString();
+
+  if (
+    firstSum === '10' ||
+    firstSum === '11' ||
+    firstSum.length === 1
+  ) {
+    value = parseInt(firstSum);
+  } else {
+    value = parseInt(sumDigits(firstSum));
+  }
+
+  return value;
 }
