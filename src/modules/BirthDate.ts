@@ -1,13 +1,13 @@
 import { getTwoDigitsString } from './helpers';
 
 export default class BirthDate {
+  readonly day: string;
+  readonly month: string;
+  readonly year: string;
+
   protected digitsArray: number[];
 
-  constructor(
-    protected readonly day: number,
-    protected readonly month: number,
-    protected readonly year: number
-  ) {
+  constructor(day: number, month: number, year: number) {
     // Checking recieved values
     if (month > 12 || month < 1) {
       throw new BirthDateError(
@@ -38,13 +38,25 @@ export default class BirthDate {
     this.digitsArray = `${dayString}${monthString}${yearString}`
       .split('')
       .map((valueString) => parseInt(valueString));
+
+    // Save values
+    this.day = dayString;
+    this.month = monthString;
+    this.year = yearString;
   }
 
   toString(): string {
-    const day = this.digitsArray.slice(0, 2).join('');
-    const month = this.digitsArray.slice(2, 4).join('');
-    const year = this.digitsArray.slice(4).join('');
-    return `${day}.${month}.${year}`;
+    return `${this.day}.${this.month}.${this.year}`;
+  }
+
+  get dayNumber() {
+    return parseInt(this.day);
+  }
+  get monthNumber() {
+    return parseInt(this.month);
+  }
+  get yearNumber() {
+    return parseInt(this.year);
   }
 }
 
