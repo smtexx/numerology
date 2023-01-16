@@ -40,4 +40,11 @@ describe('BirthDate', () => {
       new BirthDate(12, 11, 2024);
     }).toThrow('Used birth date from the feature');
   });
+
+  test('Returns prop value in number type from getters', () => {
+    const birthDate = new BirthDate(4, 5, 1997);
+    expect(birthDate.dayNumber).toBe(4);
+    expect(birthDate.monthNumber).toBe(5);
+    expect(birthDate.yearNumber).toBe(1997);
+  });
 });
