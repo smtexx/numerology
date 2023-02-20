@@ -3,7 +3,7 @@ import { calculateFlatSum, calculateTopPeakValue } from './helpers';
 import NumerologyBirthDate from './NumerologyBirthDate';
 
 export default class Pyramid {
-  readonly peaks: [Peak, Peak, Peak, Peak];
+  readonly peaks: Peak[];
 
   constructor(private birthDate: NumerologyBirthDate) {
     const base = [birthDate.month, birthDate.day, birthDate.year].map(
@@ -44,5 +44,15 @@ export default class Pyramid {
     };
 
     this.peaks = [firstPeak, secondPeak, thirdPeak, fourthPeak];
+  }
+
+  getPeaks(): {
+    [key in keyof Peak]: string;
+  }[] {
+    return this.peaks.map((peak) => ({
+      value: peak.value.toString(),
+      age: peak.age.toString(),
+      year: peak.year.toString(),
+    }));
   }
 }
